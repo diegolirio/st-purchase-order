@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: st-purchase-order
+  datasource:
+    driver-class-name: com.mongodb.Mongo
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      repositories:
+        enabled: true
+      database: po
+      password: po
+      username: po
+
+server:
+  port: 6003
+#  cloud:
+#    config:
+#      uri: http://localhost:5000
+
+eureka:
+  instance:
+    hostname: 31.220.55.236
+    port: 5002
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000 

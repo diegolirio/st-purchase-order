@@ -1,5 +1,6 @@
 package com.diegolirio.st.fixture;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.stereotype.Component;
@@ -54,8 +55,14 @@ public class FixtureTests {
 	}	
 	
 	public PurchaseOrder fixturePurchase(Address addressSender, Address addressRecipient, Address addressShippingCompany) {
+		createFixturePO(addressSender, addressRecipient, addressShippingCompany);
+		return Fixture.from(PurchaseOrder.class).gimme("valid");
+	}
+
+
+	private void createFixturePO(Address addressSender, Address addressRecipient, Address addressShippingCompany) {
 		Fixture.of(PurchaseOrder.class).addTemplate("valid", new Rule() {{
-			add("createdDate", "10/10/2017");
+			//add("createdDate", Calendar.getInstance());
 			add("customerAddressSender", addressSender);
 			add("customerAddressRecipient", addressRecipient);
 			add("customerAddressShippingCompany", addressShippingCompany);
@@ -64,7 +71,12 @@ public class FixtureTests {
 			add("pohoneShippingCompany", "11955554444");
 			add("contactRecipient", "Fulano");
 		}});
-		return Fixture.from(PurchaseOrder.class).gimme("valid");
+	}
+
+
+	public List<PurchaseOrder> fixturePurchaseList() {
+		createFixturePO(null, null, null);
+		return Fixture.from(PurchaseOrder.class).gimme(5, "valid");
 	}		
 	
 }

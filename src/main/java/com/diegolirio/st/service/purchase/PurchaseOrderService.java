@@ -8,4 +8,6 @@ public interface PurchaseOrderService {
 
 	List<PurchaseOrder> findAll();
 
+	PurchaseOrder save(PurchaseOrder purchase);
+
 }

@@ -1,5 +1,5 @@
 package com.diegolirio.st.fixture;
-
+ 
 import java.util.List;
 import java.util.Random;
 
@@ -68,7 +68,7 @@ public class FixtureTests {
 			add("customerAddressShippingCompany", addressShippingCompany);
 			add("phoneSender", "11955554444");
 			add("phoneRecipient", "11955554444");
-			add("pohoneShippingCompany", "11955554444");
+			add("phoneShippingCompany", "11955554444");
 			add("contactRecipient", "Fulano");
 		}});
 	}
@@ -77,6 +77,31 @@ public class FixtureTests {
 	public List<PurchaseOrder> fixturePurchaseList() {
 		createFixturePO(null, null, null);
 		return Fixture.from(PurchaseOrder.class).gimme(5, "valid");
+	}
+
+
+	public PurchaseOrder fixturePurchaseSaveFirst() {
+		State state = fixtureState();
+		People people = fixtureCustomer();
+		Address address = fixtureAddress(people, state);
+		Fixture.of(PurchaseOrder.class).addTemplate("saveFirst", new Rule() {{
+			add("customerAddressSender", address);
+			add("customerAddressRecipient", address);
+			add("customerAddressShippingCompany", address);
+			add("phoneSender", "11955554444");
+			add("phoneRecipient", "11955554444");
+			add("phoneShippingCompany", "11955554444");
+			add("contactRecipient", "Fulano");
+		}});
+		return Fixture.from(PurchaseOrder.class).gimme("saveFirst");
+	}
+
+	public State fixtureState() {
+		Fixture.of(State.class).addTemplate("valid", new Rule() {{
+			add("abbreviation","SP");
+			add("name", "São Paulo");
+		}});
+		return Fixture.from(State.class).gimme("valid");
 	}		
-	
+  	
 }

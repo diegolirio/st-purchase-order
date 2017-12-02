@@ -10,4 +10,6 @@ public interface PurchaseOrderService {
 
 	PurchaseOrder save(PurchaseOrder purchase);
 
+	PurchaseOrder findOne(String id);
+
 }

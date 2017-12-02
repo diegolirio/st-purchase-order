@@ -69,7 +69,14 @@ public class PurchaseOrderApiRestServiceTests {
 						.andExpect(status().isOk());
 	}
 
-
+	@Test
+	public void testFindOne() throws Exception {
+		String id = "12365154";
+		when(purchaseOrderService.findOne(id)).thenReturn(purchase);
+		mockMvc.perform(get(PurchaseOrderApiRestService.URL+"/"+id)
+							.accept(MediaType.APPLICATION_JSON_UTF8))
+						.andExpect(status().isOk());
+	}
 	
 	
 }

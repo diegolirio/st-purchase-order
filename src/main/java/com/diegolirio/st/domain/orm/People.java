@@ -3,17 +3,24 @@ package com.diegolirio.st.domain.orm;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@ToString
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class People {
 
-	protected String cpfCnpj, name, email;
+	private String cpfCnpj, name, email;
 
-	protected boolean active;
+	private boolean active;
 	
 	@JsonIgnore
-	protected List<Address> addresses;
+	private List<Address> addresses;
 	
 	@JsonIgnore
-	protected List<Telephone> phones;
+	private List<Telephone> phones;
 	
 }

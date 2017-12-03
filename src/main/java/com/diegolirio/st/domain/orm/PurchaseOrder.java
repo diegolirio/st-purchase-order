@@ -1,6 +1,5 @@
 package com.diegolirio.st.domain.orm;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;

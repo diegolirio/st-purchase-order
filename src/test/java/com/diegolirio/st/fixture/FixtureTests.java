@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 
 import com.diegolirio.st.domain.orm.Address;
 import com.diegolirio.st.domain.orm.Customer;
+import com.diegolirio.st.domain.orm.OrderProduct;
 import com.diegolirio.st.domain.orm.People;
+import com.diegolirio.st.domain.orm.Product;
 import com.diegolirio.st.domain.orm.PurchaseOrder;
 import com.diegolirio.st.domain.orm.State;
 import com.diegolirio.st.domain.orm.Telephone;
@@ -102,6 +104,36 @@ public class FixtureTests {
 			add("name", "São Paulo");
 		}});
 		return Fixture.from(State.class).gimme("valid");
+	}
+
+	public Product fixtureProduct() {
+		Fixture.of(Product.class).addTemplate("valid", new Rule() {{
+			add("code","123");
+			add("description", "Notebook");
+			add("valueUnit", 500.0d);
+		}});
+		return Fixture.from(Product.class).gimme("valid");
+	}
+
+	public OrderProduct fixtureOrderProduct() {
+		Fixture.of(OrderProduct.class).addTemplate("valid", new Rule() {{
+			add("purchaseOrder", fixturePurchaseSaveFirst());
+			add("product", fixtureProduct());
+			add("valueUnit", 500.0d);
+			add("amount", 2);
+		}});
+		return Fixture.from(OrderProduct.class).gimme("valid");
+	}
+
+
+	public List<OrderProduct> fixtureItemList() {
+		Fixture.of(OrderProduct.class).addTemplate("valid", new Rule() {{
+			add("purchaseOrder", fixturePurchaseSaveFirst());
+			add("product", fixtureProduct());
+			add("valueUnit", 500.0d);
+			add("amount", 2);
+		}});
+		return Fixture.from(OrderProduct.class).gimme(5, "valid");	
 	}		
   	
 }

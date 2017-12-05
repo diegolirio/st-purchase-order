@@ -12,6 +12,10 @@ spring:
       database: po
       password: po
       username: po
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
 
 server:
   port: 6003
@@ -30,3 +34,10 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 3000 
+    
+destination:
+  queue:
+    email: email.box.q    
+    nf: nf.generate.q
+    
+    

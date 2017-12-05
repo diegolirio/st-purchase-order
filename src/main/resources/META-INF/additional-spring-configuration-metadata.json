@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "destiation.boot",
+    "type": "java.lang.String",
+    "description": "A description for 'destiation.boot'"
+  },
+  {
+    "name": "destination.queue.email",
+    "type": "java.lang.String",
+    "description": "A description for 'destination.queue.email'"
+  },
+  {
+    "name": "destination.queue.nf",
+    "type": "java.lang.String",
+    "description": "A description for 'destination.queue.nf'"
+  },
+  {
+    "name": "destination.queue.nf",
+    "type": "java.lang.String",
+    "description": "A description for 'destination.queue.nf'"
+  },
+  {
+    "name": "eureka.server.wait-time-in-ms-when-sync-empty",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.server.wait-time-in-ms-when-sync-empty'"
+  },
+  {
+    "name": "eureka.instance.port",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.port'"
+  }
+]}

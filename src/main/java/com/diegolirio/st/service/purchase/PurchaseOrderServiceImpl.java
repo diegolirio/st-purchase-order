@@ -1,6 +1,5 @@
 package com.diegolirio.st.service.purchase;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.diegolirio.st.domain.orm.PurchaseOrder;
 import com.diegolirio.st.domain.orm.StatusType;
 import com.diegolirio.st.exceptions.PurchaseOrderCompletedException;
+import com.diegolirio.st.service.purchase.post.ActionCompleting;
+import com.diegolirio.st.service.purchase.post.ActionCompletingFactories;
+import com.diegolirio.st.service.purchase.post.ActionsAfterCompleteService;
 
 
 @Service
@@ -21,6 +23,9 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 	
 	@Autowired
 	private ActionsAfterCompleteService actionsAfterCompleteService;
+
+	@Autowired
+	private ActionCompletingFactories actionCompletingFactories;
 
 	@Override
 	public List<PurchaseOrder> findAll() {
@@ -53,9 +58,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 	}
 
 	private void actionsAfterCompleting(PurchaseOrder purchaseOrder) {
-		List<ActionCompleting> actions = new ArrayList<>();
-		actions.add(new EmailPurchase(purchaseOrder));
-		actions.add(new GenerateNF(purchaseOrder));
+		List<ActionCompleting> actions  = this.actionCompletingFactories.getActions(purchaseOrder);
 		this.actionsAfterCompleteService.executeActions(actions);		
 	}
 

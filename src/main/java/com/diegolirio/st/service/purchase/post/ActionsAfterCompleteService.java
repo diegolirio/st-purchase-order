@@ -1,4 +1,4 @@
-package com.diegolirio.st.service.purchase;
+package com.diegolirio.st.service.purchase.post;
 
 import java.util.List;
 

@@ -40,4 +40,10 @@ destination:
     email: email.box.q    
     nf: nf.generate.q
     
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    org.springframework.data.mongodb.repository.Query: DEBUG        
     

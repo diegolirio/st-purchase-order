@@ -9,7 +9,7 @@ import com.diegolirio.st.domain.orm.OrderProduct;
 import com.diegolirio.st.domain.orm.PurchaseOrder;
 
 @Repository
-public interface OrderProductRepository extends MongoRepository<OrderProduct, String> {
+interface OrderProductRepository extends MongoRepository<OrderProduct, String> {
 
 	List<OrderProduct> findByPurchaseOrder(PurchaseOrder purchaseOrder);
 

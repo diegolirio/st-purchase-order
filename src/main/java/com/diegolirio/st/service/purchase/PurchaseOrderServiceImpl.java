@@ -7,9 +7,11 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.diegolirio.st.domain.orm.OrderProduct;
 import com.diegolirio.st.domain.orm.PurchaseOrder;
 import com.diegolirio.st.domain.orm.StatusType;
 import com.diegolirio.st.exceptions.PurchaseOrderCompletedException;
+import com.diegolirio.st.service.item.OrderProductService;
 import com.diegolirio.st.service.purchase.post.ActionCompleting;
 import com.diegolirio.st.service.purchase.post.ActionCompletingFactories;
 import com.diegolirio.st.service.purchase.post.ActionsAfterCompleteService;
@@ -26,6 +28,9 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
 	@Autowired
 	private ActionCompletingFactories actionCompletingFactories;
+
+	@Autowired
+	private OrderProductService orderProductService;
 
 	@Override
 	public List<PurchaseOrder> findAll() {
@@ -52,6 +57,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 			throw new PurchaseOrderCompletedException("Para finalizar o pedido é preciso que o mesmo esteja com Status PENDENTE.");
 		} 
 		purchaseOrder.setStatus(StatusType.COMPLETED);
+		List<OrderProduct> items = this.orderProductService.findByPurchaseOrderId(purchaseOrder.getId());
+		purchaseOrder.setOrdersProducts(items);
 		purchaseOrder = this.save(purchaseOrder);
 		this.actionsAfterCompleting(purchaseOrder);
 		return purchaseOrder;

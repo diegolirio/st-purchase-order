@@ -32,5 +32,9 @@ public class Address {
 	private People people;
 	
 	private boolean active;
+
+	public String getPeopleEmail() {
+		return this.people.getEmail();
+	}
 	
 }

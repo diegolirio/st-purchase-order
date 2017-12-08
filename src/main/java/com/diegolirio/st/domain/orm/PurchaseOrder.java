@@ -1,6 +1,7 @@
 package com.diegolirio.st.domain.orm;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -42,5 +43,19 @@ public class PurchaseOrder {
 	
 	@Setter
 	private StatusType status;
+	
+	@Setter
+	private Boolean sendToGenerateNF;
+	
+	@Setter
+	private List<OrderProduct> ordersProducts;
+
+	public String getRecipientEmail() {
+		return this.customerAddressRecipient.getPeopleEmail();
+	}
+ 
+	public String getSenderEmail() {
+		return this.customerAddressSender.getPeopleEmail();
+	}
 	
 }

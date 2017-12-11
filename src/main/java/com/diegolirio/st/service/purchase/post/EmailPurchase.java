@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.diegolirio.st.domain.orm.PurchaseOrder;
 import com.diegolirio.st.helpers.JSONConvert;
 import com.diegolirio.st.jms.EmailProducer;
+import com.diegolirio.st.resources.Attachment;
 import com.diegolirio.st.resources.Email;
 import com.diegolirio.st.service.purchase.file.PurchaseFile;
 
@@ -47,7 +48,10 @@ public class EmailPurchase implements ActionCompleting {
 		List<String> to = Arrays.asList(purchaseOrder.getRecipientEmail());
 		List<String> cc = Arrays.asList(purchaseOrder.getSenderEmail());
 		String purchaseAttach = purchaseFile.toFile(purchaseOrder);
-		List<String> attachments = Arrays.asList(purchaseAttach); 
+		Attachment attach = new Attachment();
+		attach.setFile(purchaseAttach);
+		attach.setName("Pedido-"+purchaseOrder.getId()); 
+		List<Attachment> attachments = Arrays.asList(attach); 
 		return Email.builder().subject(String.format("Pedido %s", purchaseOrder.getId()))
 							  .body("Segue pedido em anexo")
 							  .to(to)

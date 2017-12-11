@@ -3,7 +3,7 @@ package com.diegolirio.st.service.purchase;
 import java.util.List;
 
 import com.diegolirio.st.domain.orm.PurchaseOrder;
-import com.diegolirio.st.exceptions.PurchaseOrderCompletedException;
+import com.diegolirio.st.exceptions.PurchaseOrderIsNotPendingException;
 
 public interface PurchaseOrderService {
 
@@ -13,6 +13,6 @@ public interface PurchaseOrderService {
 
 	PurchaseOrder findOne(String id);
 
-	PurchaseOrder complete(PurchaseOrder purchaseOrder) throws PurchaseOrderCompletedException;
+	PurchaseOrder complete(PurchaseOrder purchaseOrder) throws PurchaseOrderIsNotPendingException;
 
 }

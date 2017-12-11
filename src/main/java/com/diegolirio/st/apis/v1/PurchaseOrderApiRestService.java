@@ -1,6 +1,5 @@
 package com.diegolirio.st.apis.v1;
 
-import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diegolirio.st.domain.orm.PurchaseOrder;
-import com.diegolirio.st.exceptions.PurchaseOrderCompletedException;
+import com.diegolirio.st.exceptions.PurchaseOrderIsNotPendingException;
 import com.diegolirio.st.service.purchase.PurchaseOrderService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,12 +54,12 @@ public class PurchaseOrderApiRestService {
 	}	
 
 	@PutMapping("/complete")
-	public ResponseEntity<?> complete(@RequestBody PurchaseOrder purchaseOrder) throws JsonProcessingException, PurchaseOrderCompletedException {
+	public ResponseEntity<?> complete(@RequestBody PurchaseOrder purchaseOrder) throws JsonProcessingException, PurchaseOrderIsNotPendingException {
 		PurchaseOrder po = this.purchaseOrderService.complete(purchaseOrder);
 		return new ResponseEntity<String>(this.objectMapperPurchase.writeValueAsString(po), HttpStatus.OK);
 	}	
 
-    @ExceptionHandler(PurchaseOrderCompletedException.class)
+    @ExceptionHandler(PurchaseOrderIsNotPendingException.class)
     @ResponseStatus(value=HttpStatus.BAD_REQUEST)
     public String handle400InvalidPosition(Exception ex) {
     	return "{\"message\":\""+ex.getMessage() + "\"}";

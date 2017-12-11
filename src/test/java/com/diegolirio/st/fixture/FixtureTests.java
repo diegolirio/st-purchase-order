@@ -134,6 +134,26 @@ public class FixtureTests {
 			add("amount", 2);
 		}});
 		return Fixture.from(OrderProduct.class).gimme(5, "valid");	
+	}
+
+
+	public PurchaseOrder fixturePurchaseWithItens() {
+		State state = fixtureState();
+		People people = fixtureCustomer();
+		Address address = fixtureAddress(people, state);
+		Fixture.of(PurchaseOrder.class).addTemplate("poWithItens", new Rule() {{
+			add("id", "51sc51f12d61f62g");
+			add("customerAddressSender", address);
+			add("customerAddressRecipient", address);
+			add("customerAddressShippingCompany", address);
+			add("phoneSender", "11955554444");
+			add("phoneRecipient", "11955554444");
+			add("phoneShippingCompany", "11955554444");
+			add("contactRecipient", "Fulano");
+			add("paymentsTerms", "Contrato: ABC");
+			add("ordersProducts", fixtureItemList());
+		}});
+		return Fixture.from(PurchaseOrder.class).gimme("poWithItens");
 	}		
   	
 }

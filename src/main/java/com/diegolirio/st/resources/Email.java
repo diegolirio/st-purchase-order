@@ -12,6 +12,9 @@ public class Email {
 	private String subject, body;
 	
 	@Getter
-	private List<String> to, cc, co, attachments;
+	private List<String> to, cc, co;
+	
+	@Getter
+	private List<Attachment> attachments;
 	
 }

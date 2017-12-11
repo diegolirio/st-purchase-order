@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.diegolirio.st.domain.orm.OrderProduct;
 import com.diegolirio.st.domain.orm.PurchaseOrder;
 import com.diegolirio.st.domain.orm.StatusType;
-import com.diegolirio.st.exceptions.PurchaseOrderCompletedException;
+import com.diegolirio.st.exceptions.PurchaseOrderIsNotPendingException;
 import com.diegolirio.st.service.item.OrderProductService;
 import com.diegolirio.st.service.purchase.post.ActionCompleting;
 import com.diegolirio.st.service.purchase.post.ActionCompletingFactories;
@@ -52,9 +52,9 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 	}
 
 	@Override
-	public PurchaseOrder complete(PurchaseOrder purchaseOrder) throws PurchaseOrderCompletedException {
+	public PurchaseOrder complete(PurchaseOrder purchaseOrder) throws PurchaseOrderIsNotPendingException {
 		if(purchaseOrder.getStatus() != StatusType.PENDING) {
-			throw new PurchaseOrderCompletedException("Para finalizar o pedido é preciso que o mesmo esteja com Status PENDENTE.");
+			throw new PurchaseOrderIsNotPendingException();
 		} 
 		purchaseOrder.setStatus(StatusType.COMPLETED);
 		List<OrderProduct> items = this.orderProductService.findByPurchaseOrderId(purchaseOrder.getId());

@@ -11,7 +11,9 @@ public class PurchaseReportFactory {
 	@Qualifier("purchaseReportPDF")
 	private PurchaseReport purchaseReportPDF;
 
-	public PurchaseReport getReport() {
+	public PurchaseReport getReport(ReportType reportType) {
+		if(ReportType.PDF == reportType)
+			return purchaseReportPDF;
 		return purchaseReportPDF;
 	}
 	

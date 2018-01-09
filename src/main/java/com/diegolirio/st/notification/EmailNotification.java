@@ -6,12 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class EmailNotification implements Notification {
+public class EmailNotification implements Notifier {
 
 	@Override
 	public void send(NotificationMessage notificationMessage) {
 		log.info(notificationMessage.toString());
-		// TODO JavaMail
+		// TODO 1 JavaMail SEND
 	}
 
 }

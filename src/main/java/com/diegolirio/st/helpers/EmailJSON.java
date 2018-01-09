@@ -3,7 +3,6 @@ package com.diegolirio.st.helpers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.diegolirio.st.resources.Email;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,7 +13,7 @@ public class EmailJSON implements JSONConvert {
 	private ObjectMapper objectMapper;
 
 	@Override
-	public String toJSON(Email email) {
+	public String toJSON(Object email) {
 		try {
 			return this.objectMapper.writeValueAsString(email);
 		} catch (JsonProcessingException e) {

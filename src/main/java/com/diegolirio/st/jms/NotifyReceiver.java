@@ -2,7 +2,7 @@ package com.diegolirio.st.jms;
 
 import java.util.concurrent.CountDownLatch;
 
-public interface EmailReceiver {
+public interface NotifyReceiver {
 
 	CountDownLatch getLatch();
 	

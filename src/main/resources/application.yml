@@ -37,7 +37,7 @@ eureka:
     
 destination:
   queue:
-    email: email.box.q    
+    notify: notify.box.q    
     nf: nf.generate.q
     
 logging:

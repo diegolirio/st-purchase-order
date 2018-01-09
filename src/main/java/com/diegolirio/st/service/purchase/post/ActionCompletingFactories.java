@@ -12,17 +12,17 @@ import com.diegolirio.st.domain.orm.PurchaseOrder;
 @Component
 public class ActionCompletingFactories {
 
-	@Autowired @Qualifier("EmailPurchase")
-	private ActionCompleting email;
+	@Autowired @Qualifier("NotifyPurchase")
+	private ActionCompleting notify;
 	
 	@Autowired @Qualifier("GenerateNF")
 	private ActionCompleting generateNF;
 	
 	
 	public List<ActionCompleting> getActions(PurchaseOrder purchaseOrder) {
-		email.setPurchaseOrder(purchaseOrder);
+		notify.setPurchaseOrder(purchaseOrder);
 		generateNF.setPurchaseOrder(purchaseOrder);
-		return Arrays.asList(email, generateNF);
+		return Arrays.asList(notify, generateNF);
 	}
 
 }

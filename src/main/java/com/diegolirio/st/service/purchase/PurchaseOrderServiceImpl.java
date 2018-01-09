@@ -16,8 +16,11 @@ import com.diegolirio.st.service.purchase.post.ActionCompleting;
 import com.diegolirio.st.service.purchase.post.ActionCompletingFactories;
 import com.diegolirio.st.service.purchase.post.ActionsAfterCompleteService;
 
+import lombok.extern.slf4j.Slf4j;
 
-@Service
+
+@Slf4j
+@Service("purchaseOrderServiceImpl")
 public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
 	@Autowired
@@ -48,6 +51,8 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
 	@Override
 	public PurchaseOrder findOne(String id) {
+		//log.error("this.purchaseOrderRepository.findOne({})", id);
+		//throw new RuntimeException("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
 		return this.purchaseOrderRepository.findOne(id);
 	}
 

@@ -1,21 +1,21 @@
 package com.diegolirio.st.jms;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
-public class EmailProducerImpl implements EmailProducer {
+import lombok.extern.slf4j.Slf4j;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmailProducerImpl.class);
+@Slf4j
+@Component
+public class NotifyProducerImpl implements NotifyProducer {
+
 	
 	@Autowired
 	private JmsTemplate jmsTemplate;
 
 	public void send(String destination, String message) {
-		LOGGER.info("sending message='{}' to destination='{}'", message, destination);
+		log.info("sending message='{}' to destination='{}'", message, destination);
 		jmsTemplate.convertAndSend(destination, message);
 	}
 

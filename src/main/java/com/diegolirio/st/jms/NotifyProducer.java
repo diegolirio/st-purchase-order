@@ -1,6 +1,6 @@
 package com.diegolirio.st.jms;
 
-public interface EmailProducer {
+public interface NotifyProducer {
 
 	void send(String destination, String message);
 	

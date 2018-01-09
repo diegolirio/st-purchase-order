@@ -28,5 +28,10 @@
     "name": "eureka.instance.port",
     "type": "java.lang.String",
     "description": "A description for 'eureka.instance.port'"
+  },
+  {
+    "name": "destination.queue.notify",
+    "type": "java.lang.String",
+    "description": "A description for 'destination.queue.notify'"
   }
 ]}

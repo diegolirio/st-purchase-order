@@ -19,7 +19,6 @@ public class PurchaseFilePDFBase64 implements PurchaseFile {
 	public String toFile(PurchaseOrder purchaseOrder) {
 		PurchaseReport report = this.purchaseReportFactory.getReport(ReportType.PDF);
 		byte [] fileReport = report.generate(purchaseOrder);
-		// TODO: Convert byteOrFile in Base64 String 
 		byte[] encoded = BASE64EncoderStream.encode(fileReport); 
 		String encodedString = new String(encoded);
 		return encodedString;

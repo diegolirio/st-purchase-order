@@ -45,4 +45,11 @@ public class PurchaseOrderServiceImplTest {
 		//assertTrue(saved.getCreatedDate().getTimeInMillis() <= Calendar.getInstance().getTimeInMillis());
 	}
 	
+	@Test	
+	public void testFindById() {
+		when(purchaseOrderServiceImpl.findOne("123")).thenReturn(purchase);
+		PurchaseOrder returnPO = purchaseOrderService.findOne("123");
+		assertNotNull(returnPO); 
+	}	
+	
 }

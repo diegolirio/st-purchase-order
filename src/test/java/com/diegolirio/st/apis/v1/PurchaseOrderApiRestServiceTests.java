@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.diegolirio.st.domain.orm.PurchaseOrder;
 import com.diegolirio.st.fixture.FixtureTests;
-import com.diegolirio.st.service.purchase.PurchaseOrderService;
+import com.diegolirio.st.service.purchase.PurchaseOrderServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -38,13 +39,14 @@ public class PurchaseOrderApiRestServiceTests {
 	private PurchaseOrder purchase;
 	
 	@Mock
-	private PurchaseOrderService purchaseOrderService; 
+	private PurchaseOrderServiceImpl purchaseOrderService; 
 
 	@Autowired
 	private FixtureTests fixture;
 	
 	@Before
 	public void before() {
+		MockitoAnnotations.initMocks(this);
 		purchase = fixture.fixturePurchase(null, null, null);
 	}
 

@@ -7,7 +7,9 @@ import com.diegolirio.st.domain.orm.PurchaseOrder;
 import com.diegolirio.st.service.purchase.PurchaseOrderService;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component("GenerateNF")
 public class GenerateNF implements ActionCompleting {
 
@@ -19,9 +21,10 @@ public class GenerateNF implements ActionCompleting {
 
 	@Override
 	public void execute() {
-		System.out.println(purchaseOrder.getId() + " adicionado na fila para gerar NF");
+		log.info(purchaseOrder.getId() + " adicionado na fila para gerar NF");
 		this.purchaseOrder.setSendToGenerateNF(true);
 		this.purchaseOrderService.save(this.purchaseOrder);
+		// TODO: add aqui na fila geraNF
 	}
 
 	@Override

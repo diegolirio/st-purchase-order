@@ -12,10 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class JmsTests {
 
 	@Autowired
-	private EmailProducer emailProducer;
+	private NotifyProducer producer;
 
 	@Autowired
-	private EmailReceiver receiver;
+	private NotifyReceiver receiver;
 	
 	//@Autowired
 	//private JmsTemplate jmsTemplate;

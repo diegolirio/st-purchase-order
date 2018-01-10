@@ -69,7 +69,7 @@ public class NotifyPurchase implements ActionCompleting {
 		List<String> cc = Arrays.asList(purchaseOrder.getSenderEmail());
 		String purchaseAttach = purchaseFile.toFile(purchaseOrder);
 		Attachment attach = new Attachment();
-		attach.setFile(purchaseAttach);
+		attach.setFileBase64(purchaseAttach);
 		attach.setName("Pedido-"+purchaseOrder.getId()); 
 		List<Attachment> attachments = Arrays.asList(attach); 
 		NotificationMessage notificationMessage = new NotificationMessage();

@@ -1,6 +1,6 @@
 package com.diegolirio.st.notification;
 
-public interface Notification {
+public interface Notifier {
 
 	void send(NotificationMessage notificationMessage);
 	

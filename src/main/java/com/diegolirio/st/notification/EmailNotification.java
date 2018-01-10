@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class EmailNotification implements Notification {
+public class EmailNotification implements Notifier {
 
 	@Autowired
 	private JavaMailSender emailSender;
@@ -31,7 +31,7 @@ public class EmailNotification implements Notification {
 	@Value("${app.mail.from}")
 	private String from;
 	
-	@Override
+	@Override 
 	public void send(NotificationMessage notificationMessage) {
 		log.info(notificationMessage.toString());
 		

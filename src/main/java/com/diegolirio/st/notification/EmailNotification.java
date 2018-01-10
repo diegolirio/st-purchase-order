@@ -28,6 +28,7 @@ public class EmailNotification implements Notifier {
 	@Autowired
 	private JavaMailSender emailSender;
 	
+	// TODO: mail.username
 	@Value("${app.mail.from}")
 	private String from;
 	
